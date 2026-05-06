@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S&amp;N Construction LLC — Winchester's Outdoor Living Experts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#E8712A',
+              'orange-dark': '#C85E1F',
+              'orange-light': '#F28C4A',
+              dark: '#141414',
+              charcoal: '#2A2A2A',
+              gray: '#3D3D3D',
+              cream: '#F7F3EE',
+              'cream-dark': '#EDE8E0',
+              muted: '#7A7A7A',
+              border: '#E0D9CF',
+            }
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: {
+            tighter: '-0.04em',
+            tight: '-0.02em',
+          },
+          lineHeight: {
+            relaxed: '1.75',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #FFFFFF; color: #2A2A2A; }
+
+    /* NAV */
+    #navbar { transition: background 0.3s ease, box-shadow 0.3s ease; }
+    #navbar.scrolled { background: #141414 !important; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+
+    /* HERO */
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(20,20,20,0.82) 0%, rgba(40,20,10,0.65) 60%, rgba(232,113,42,0.18) 100%),
+                  url('https://placehold.co/1920x1080/2a1a0a/4a3020?text=Beautiful+Outdoor+Living+Space') center/cover no-repeat;
+    }
+
+    /* Grain texture overlay */
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Layered shadow utility */
+    .shadow-brand { box-shadow: 0 4px 12px rgba(232,113,42,0.25), 0 1px 3px rgba(0,0,0,0.12); }
+    .shadow-brand-lg { box-shadow: 0 8px 32px rgba(232,113,42,0.3), 0 2px 8px rgba(0,0,0,0.15); }
+    .shadow-card { box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08); }
+    .shadow-card-hover { box-shadow: 0 8px 32px rgba(232,113,42,0.18), 0 2px 12px rgba(0,0,0,0.1); }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: #E8712A; color: #fff; font-weight: 600; font-size: 0.95rem;
+      padding: 14px 28px; border-radius: 6px; border: none; cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(232,113,42,0.35);
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: #C85E1F; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,113,42,0.45); }
+    .btn-primary:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(232,113,42,0.3); }
+    .btn-primary:focus-visible { outline: 3px solid #F28C4A; outline-offset: 3px; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; color: #fff; font-weight: 600; font-size: 0.95rem;
+      padding: 13px 28px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.7); cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      text-decoration: none;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; transform: translateY(-2px); }
+    .btn-outline:active { transform: translateY(0); }
+    .btn-outline:focus-visible { outline: 3px solid #F28C4A; outline-offset: 3px; }
+
+    .btn-dark {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: #141414; color: #fff; font-weight: 600; font-size: 0.95rem;
+      padding: 14px 28px; border-radius: 6px; border: none; cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      text-decoration: none;
+    }
+    .btn-dark:hover { background: #2A2A2A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+    .btn-dark:active { transform: translateY(0); }
+    .btn-dark:focus-visible { outline: 3px solid #E8712A; outline-offset: 3px; }
+
+    /* Service cards */
+    .service-card {
+      background: #fff; border-radius: 12px; overflow: hidden;
+      border: 1px solid #E0D9CF;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: #E8712A; box-shadow: 0 12px 40px rgba(232,113,42,0.18), 0 4px 16px rgba(0,0,0,0.1); }
+    .service-card .card-img { overflow: hidden; }
+    .service-card .card-img img { transition: transform 0.4s ease; width: 100%; height: 220px; object-fit: cover; display: block; }
+    .service-card:hover .card-img img { transform: scale(1.05); }
+
+    /* Process steps */
+    .step-line { position: absolute; top: 28px; left: calc(50% + 28px); right: calc(-50% + 28px); height: 2px; background: linear-gradient(90deg, #E8712A, #E0D9CF); }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid #E0D9CF; }
+    .faq-btn { width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-btn:focus-visible { outline: 2px solid #E8712A; outline-offset: 2px; border-radius: 4px; }
+    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: #F7F3EE; border: 1px solid #E0D9CF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, transform 0.3s ease; }
+    .faq-btn[aria-expanded="true"] .faq-icon { background: #E8712A; transform: rotate(45deg); }
+    .faq-btn[aria-expanded="true"] .faq-icon svg { stroke: #fff; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s ease; }
+    .faq-answer.open { max-height: 300px; }
+
+    /* Stat counters */
+    .stat-card { background: linear-gradient(135deg, #1E1E1E 0%, #2A1800 100%); border: 1px solid rgba(232,113,42,0.2); border-radius: 12px; }
+
+    /* Section label */
+    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #E8712A; margin-bottom: 12px; }
+
+    /* Testimonials */
+    .testimonial-card { background: #fff; border-radius: 12px; border: 1px solid #E0D9CF; box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(232,113,42,0.12), 0 4px 16px rgba(0,0,0,0.08); }
+
+    /* Contact form */
+    .form-input {
+      width: 100%; padding: 12px 16px; border: 1.5px solid #E0D9CF; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #2A2A2A; background: #fff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+    .form-input:focus { border-color: #E8712A; box-shadow: 0 0 0 3px rgba(232,113,42,0.12); }
+    .form-input::placeholder { color: #AAA; }
+
+    /* Mobile nav */
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    #mobile-menu.open { max-height: 400px; }
+
+    /* Scroll animations */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero radial glow */
+    .hero-glow { position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse at center, rgba(232,113,42,0.15) 0%, transparent 70%); pointer-events: none; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded-lg">
+        <div class="w-10 h-10 rounded-lg bg-brand-orange flex items-center justify-center shadow-brand group-hover:bg-brand-orange-dark transition-colors duration-200 flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <div class="text-white font-display font-700 text-lg leading-none">S&amp;N</div>
+          <div class="text-brand-orange text-xs font-body font-500 tracking-widest uppercase leading-none mt-0.5">Construction LLC</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#services" class="text-white/80 hover:text-brand-orange text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:text-brand-orange">Services</a>
+        <a href="#about" class="text-white/80 hover:text-brand-orange text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:text-brand-orange">About Us</a>
+        <a href="#reviews" class="text-white/80 hover:text-brand-orange text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:text-brand-orange">Reviews</a>
+        <a href="#service-area" class="text-white/80 hover:text-brand-orange text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:text-brand-orange">Service Area</a>
+        <a href="#faq" class="text-white/80 hover:text-brand-orange text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:text-brand-orange">FAQ</a>
+        <a href="#contact" class="text-white/80 hover:text-brand-orange text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:text-brand-orange">Contact</a>
+      </div>
+
+      <!-- CTA + hamburger -->
+      <div class="flex items-center gap-4">
+        <a href="tel:5405148725" class="hidden sm:flex btn-primary text-sm py-2.5 px-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          (540) 514-8725
+        </a>
+        <button id="hamburger" aria-label="Open menu" aria-expanded="false" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+          <span class="block w-5 h-0.5 bg-white transition-all duration-300" id="h1"></span>
+          <span class="block w-5 h-0.5 bg-white transition-all duration-300" id="h2"></span>
+          <span class="block w-5 h-0.5 bg-white transition-all duration-300" id="h3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+      <div class="pb-4 flex flex-col gap-1 border-t border-white/10 pt-3">
+        <a href="#services" class="mobile-link text-white/80 hover:text-brand-orange hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200">Services</a>
+        <a href="#about" class="mobile-link text-white/80 hover:text-brand-orange hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200">About Us</a>
+        <a href="#reviews" class="mobile-link text-white/80 hover:text-brand-orange hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200">Reviews</a>
+        <a href="#service-area" class="mobile-link text-white/80 hover:text-brand-orange hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200">Service Area</a>
+        <a href="#faq" class="mobile-link text-white/80 hover:text-brand-orange hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200">FAQ</a>
+        <a href="#contact" class="mobile-link text-white/80 hover:text-brand-orange hover:bg-white/5 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200">Contact</a>
+        <a href="tel:5405148725" class="btn-primary mt-3 mx-4 justify-center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call (540) 514-8725
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero-bg grain relative min-h-screen flex items-center pt-20" id="hero">
+  <div class="hero-glow"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-32">
+    <div class="max-w-3xl">
+      <div class="section-label mb-4">Winchester, VA & Surrounding Areas</div>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-7xl text-white font-800 leading-tight tracking-tighter mb-6">
+        Build Your<br/>
+        <span class="text-brand-orange">Dream</span><br/>
+        Outdoor Space
+      </h1>
+      <p class="text-white/75 text-lg sm:text-xl font-body font-300 leading-relaxed mb-10 max-w-xl">
+        Winchester's trusted choice for custom decks, patios, fireplaces, and hardscapes — crafted with premium materials and unmatched attention to detail.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#contact" class="btn-primary text-base px-8 py-4">
+          Build Your Dream Space
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:5405148725" class="btn-outline text-base px-8 py-4">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Now
+        </a>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap gap-4 mt-8 pt-8 border-t border-white/15">
+        <div class="flex items-center gap-2 text-white/70">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#E8712A" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span class="text-sm font-medium">5-Star Rated</span>
+        </div>
+        <div class="flex items-center gap-2 text-white/70">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span class="text-sm font-medium">Licensed &amp; Insured</span>
+        </div>
+        <div class="flex items-center gap-2 text-white/70">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <span class="text-sm font-medium">Free Estimates</span>
+        </div>
+        <div class="flex items-center gap-2 text-white/70">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <span class="text-sm font-medium">Local &amp; Family Owned</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 z-10">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ STATS ═══════════════════════════════ -->
+<section class="bg-brand-dark py-12 lg:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="stat-card p-6 text-center reveal">
+        <div class="font-display text-4xl font-700 text-brand-orange mb-1">500+</div>
+        <div class="text-white/60 text-sm font-body">Projects Completed</div>
+      </div>
+      <div class="stat-card p-6 text-center reveal">
+        <div class="font-display text-4xl font-700 text-brand-orange mb-1">10+</div>
+        <div class="text-white/60 text-sm font-body">Years of Experience</div>
+      </div>
+      <div class="stat-card p-6 text-center reveal">
+        <div class="font-display text-4xl font-700 text-brand-orange mb-1">5★</div>
+        <div class="text-white/60 text-sm font-body">Average Rating</div>
+      </div>
+      <div class="stat-card p-6 text-center reveal">
+        <div class="font-display text-4xl font-700 text-brand-orange mb-1">20+</div>
+        <div class="text-white/60 text-sm font-body">Cities Served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SERVICES ═══════════════════════════════ -->
+<section id="services" class="bg-brand-cream py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 lg:mb-16 reveal">
+      <span class="section-label">What We Build</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal font-700 tracking-tight mb-4">Our Services</h2>
+      <p class="text-brand-muted text-lg max-w-2xl mx-auto font-body leading-relaxed">From custom decks to stunning outdoor fireplaces — we design and build outdoor living spaces that match your lifestyle.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Decks -->
+      <a href="#contact" class="service-card block group">
+        <div class="card-img relative">
+          <img src="https://placehold.co/600x220/2a1a0a/c85e1f?text=Decks" alt="Custom Deck Construction" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+            <span class="bg-brand-orange text-white text-xs font-700 px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-2 group-hover:text-brand-orange transition-colors duration-200">Decks</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Custom-designed wood and composite decks built to last, tailored to your home's architecture and outdoor vision.</p>
+          <div class="flex items-center gap-1 mt-4 text-brand-orange text-sm font-600">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Patios -->
+      <a href="#contact" class="service-card block group">
+        <div class="card-img">
+          <img src="https://placehold.co/600x220/1a2a1a/3a6a3a?text=Patios" alt="Patio Installation" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" style="position:absolute;inset:0"></div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-2 group-hover:text-brand-orange transition-colors duration-200">Patios</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Beautiful paver and stone patios that transform your backyard into an outdoor retreat for entertaining and relaxing.</p>
+          <div class="flex items-center gap-1 mt-4 text-brand-orange text-sm font-600">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Hardscapes -->
+      <a href="#contact" class="service-card block group">
+        <div class="card-img">
+          <img src="https://placehold.co/600x220/1a1a2a/3a3a6a?text=Hardscapes" alt="Hardscape Design" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-2 group-hover:text-brand-orange transition-colors duration-200">Hardscapes</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Retaining walls, walkways, driveways, and outdoor structures that add both function and curb appeal.</p>
+          <div class="flex items-center gap-1 mt-4 text-brand-orange text-sm font-600">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Fireplaces -->
+      <a href="#contact" class="service-card block group">
+        <div class="card-img">
+          <img src="https://placehold.co/600x220/2a1a0a/8a3a0a?text=Fireplaces" alt="Outdoor Fireplace" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-2 group-hover:text-brand-orange transition-colors duration-200">Fireplaces</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Stunning outdoor fireplaces and fire pits that extend your outdoor living season and create a warm ambiance.</p>
+          <div class="flex items-center gap-1 mt-4 text-brand-orange text-sm font-600">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Porches -->
+      <a href="#contact" class="service-card block group">
+        <div class="card-img">
+          <img src="https://placehold.co/600x220/0a1a2a/1a4a5a?text=Porches" alt="Porch Construction" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-2 group-hover:text-brand-orange transition-colors duration-200">Porches</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Covered porches and screened enclosures that seamlessly blend indoor comfort with the beauty of the outdoors.</p>
+          <div class="flex items-center gap-1 mt-4 text-brand-orange text-sm font-600">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Landscaping -->
+      <a href="#contact" class="service-card block group">
+        <div class="card-img">
+          <img src="https://placehold.co/600x220/0a2a0a/1a5a1a?text=Landscaping" alt="Landscaping Services" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-2 group-hover:text-brand-orange transition-colors duration-200">Landscaping</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Complete landscaping solutions that enhance your property's natural beauty and complement your outdoor structures.</p>
+          <div class="flex items-center gap-1 mt-4 text-brand-orange text-sm font-600">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="#contact" class="btn-primary text-base px-8 py-4">Get a Free Estimate Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT / PROCESS ═══════════════════════════════ -->
+<section id="about" class="bg-white py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <div class="reveal">
+        <span class="section-label">About S&amp;N Construction</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal font-700 tracking-tight mb-6">
+          Crafting Outdoor Spaces You'll Love for Life
+        </h2>
+        <p class="text-brand-muted text-base leading-relaxed mb-6">
+          S&amp;N Construction LLC is a locally owned and operated company serving Winchester, VA and surrounding communities. We specialize in custom outdoor living spaces — from elegant decks to full hardscape projects — built with premium materials and unmatched craftsmanship.
+        </p>
+        <p class="text-brand-muted text-base leading-relaxed mb-8">
+          Every project starts with understanding your vision. We work closely with you through every step — from in-person estimates to 3D virtual design previews — so there are zero surprises and a result you'll love.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="btn-primary">Start Your Project</a>
+          <a href="tel:5405148725" class="btn-dark">Call Us Today</a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="relative rounded-2xl overflow-hidden shadow-card">
+          <img src="https://placehold.co/700x500/2a1a0a/c85e1f?text=S%26N+Construction+Team" alt="S&N Construction team at work" class="w-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-orange rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div>
+                  <div class="text-white font-600 text-sm">Ready to get started?</div>
+                  <a href="tel:5405148725" class="text-brand-orange text-sm font-700 hover:text-brand-orange-light transition-colors">(540) 514-8725</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Step Process -->
+    <div class="mt-14 lg:mt-24">
+      <div class="text-center mb-10 lg:mb-16 reveal">
+        <span class="section-label">How It Works</span>
+        <h2 class="font-display text-3xl sm:text-4xl text-brand-charcoal font-700 tracking-tight">Our Simple 3-Step Process</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="relative text-center reveal">
+          <div class="w-14 h-14 rounded-2xl bg-brand-orange/10 border-2 border-brand-orange/30 flex items-center justify-center mx-auto mb-6">
+            <span class="font-display text-2xl font-700 text-brand-orange">1</span>
+          </div>
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-3">Free In-Person Estimate</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">We visit your property, discuss your vision, and provide a detailed, no-obligation estimate — completely free.</p>
+        </div>
+
+        <div class="relative text-center reveal">
+          <div class="w-14 h-14 rounded-2xl bg-brand-orange/10 border-2 border-brand-orange/30 flex items-center justify-center mx-auto mb-6">
+            <span class="font-display text-2xl font-700 text-brand-orange">2</span>
+          </div>
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-3">3D Virtual Design Tour</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">See your future outdoor space before a single nail is driven — our 3D designs let you visualize and refine every detail.</p>
+        </div>
+
+        <div class="relative text-center reveal">
+          <div class="w-14 h-14 rounded-2xl bg-brand-orange/10 border-2 border-brand-orange/30 flex items-center justify-center mx-auto mb-6">
+            <span class="font-display text-2xl font-700 text-brand-orange">3</span>
+          </div>
+          <h3 class="font-display text-xl font-700 text-brand-charcoal mb-3">Expert Construction</h3>
+          <p class="text-brand-muted text-sm leading-relaxed">Our experienced crew brings your design to life with premium materials, precision craftsmanship, and clean job sites.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ REVIEWS ═══════════════════════════════ -->
+<section id="reviews" class="bg-brand-cream py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 lg:mb-16 reveal">
+      <span class="section-label">Happy Homeowners</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal font-700 tracking-tight mb-4">What Our Clients Say</h2>
+      <div class="flex items-center justify-center gap-1 mt-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span class="ml-2 text-brand-muted text-sm font-medium">5.0 average</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="testimonial-card p-7 reveal">
+        <div class="flex gap-1 mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="text-brand-gray text-sm leading-relaxed mb-5 italic">"S&amp;N Construction built our dream deck — it's absolutely stunning. The team was professional, on time, and communicated every step. We couldn't be happier with the result!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-brand-orange/20 flex items-center justify-center font-display font-700 text-brand-orange text-sm">JM</div>
+          <div>
+            <div class="font-600 text-sm text-brand-charcoal">Jennifer M.</div>
+            <div class="text-xs text-brand-muted">Winchester, VA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card p-7 reveal">
+        <div class="flex gap-1 mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="text-brand-gray text-sm leading-relaxed mb-5 italic">"The outdoor fireplace and patio they built for us has completely transformed our backyard. The 3D design preview was incredibly helpful — we knew exactly what we were getting."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-brand-orange/20 flex items-center justify-center font-display font-700 text-brand-orange text-sm">RT</div>
+          <div>
+            <div class="font-600 text-sm text-brand-charcoal">Robert T.</div>
+            <div class="text-xs text-brand-muted">Stephens City, VA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card p-7 reveal">
+        <div class="flex gap-1 mb-4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#E8712A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="text-brand-gray text-sm leading-relaxed mb-5 italic">"From start to finish, these guys were exceptional. Fair pricing, quality work, and they kept our yard clean throughout the whole project. Highly recommend S&amp;N Construction!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-brand-orange/20 flex items-center justify-center font-display font-700 text-brand-orange text-sm">SL</div>
+          <div>
+            <div class="font-600 text-sm text-brand-charcoal">Sarah L.</div>
+            <div class="text-xs text-brand-muted">Front Royal, VA</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SERVICE AREA ═══════════════════════════════ -->
+<section id="service-area" class="bg-white py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 lg:mb-16 reveal">
+      <span class="section-label">Where We Work</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal font-700 tracking-tight mb-4">Our Service Area</h2>
+      <p class="text-brand-muted text-lg max-w-2xl mx-auto">We proudly serve Winchester, VA and the surrounding region — from the Shenandoah Valley to Northern Virginia and the Eastern Panhandle of West Virginia.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="bg-brand-cream rounded-2xl p-5 sm:p-8 border border-brand-border reveal">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 bg-brand-orange rounded-xl flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="font-display text-lg font-700 text-brand-charcoal">Primary Service Area</h3>
+        </div>
+        <ul class="grid grid-cols-2 gap-y-2 gap-x-4">
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Winchester, VA</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Front Royal</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Strasburg</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Berryville</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Stephens City</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Middletown</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Clear Brook</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Martinsburg, WV</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Charles Town, WV</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></div>Ranson, WV</li>
+        </ul>
+      </div>
+
+      <div class="bg-brand-cream rounded-2xl p-5 sm:p-8 border border-brand-border reveal">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 bg-brand-charcoal rounded-xl flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="font-display text-lg font-700 text-brand-charcoal">Extended Service Area</h3>
+        </div>
+        <ul class="grid grid-cols-2 gap-y-2 gap-x-4">
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Leesburg</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Ashburn</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Sterling</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>South Riding</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Purcellville</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Middleburg</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Hamilton</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Lovettsville</li>
+          <li class="flex items-center gap-2 text-sm text-brand-gray"><div class="w-1.5 h-1.5 rounded-full bg-brand-muted flex-shrink-0"></div>Manassas</li>
+        </ul>
+        <p class="text-xs text-brand-muted mt-4 italic">Don't see your city? Call us — we may still be able to help!</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="tel:5405148725" class="btn-primary">Check If We Serve Your Area</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FAQ ═══════════════════════════════ -->
+<section id="faq" class="bg-brand-cream py-16 lg:py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 lg:mb-16 reveal">
+      <span class="section-label">Common Questions</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal font-700 tracking-tight">FAQ</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="font-display text-base font-700 text-brand-charcoal">Do you offer free estimates?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brand-muted text-sm leading-relaxed pb-6">Yes! We offer completely free, no-obligation in-person estimates. We'll visit your property, discuss your vision, and provide a detailed quote. There's no pressure and no cost to you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="font-display text-base font-700 text-brand-charcoal">What is a 3D virtual design tour?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brand-muted text-sm leading-relaxed pb-6">Before we break ground, we create a detailed 3D rendering of your future outdoor space. This lets you walk through the design virtually, make changes, and confirm every detail before construction begins — so you know exactly what you're getting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="font-display text-base font-700 text-brand-charcoal">Are you licensed and insured?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brand-muted text-sm leading-relaxed pb-6">Absolutely. S&amp;N Construction LLC is fully licensed and insured in Virginia and West Virginia. We carry both general liability and workers' compensation insurance to protect you and our team throughout every project.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="font-display text-base font-700 text-brand-charcoal">How long does a typical project take?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brand-muted text-sm leading-relaxed pb-6">Timelines vary by project size and complexity. A standard deck can be completed in 1–2 weeks, while larger patio and hardscape projects may take 2–4 weeks. We'll give you a clear timeline during your estimate and keep you updated throughout the build.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="font-display text-base font-700 text-brand-charcoal">What materials do you use?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brand-muted text-sm leading-relaxed pb-6">We use only premium materials sourced from trusted suppliers — including composite decking (Trex, TimberTech), natural stone, concrete pavers, pressure-treated lumber, and more. We'll walk you through material options and help you choose what best fits your budget and vision.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="font-display text-base font-700 text-brand-charcoal">What areas do you serve?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-brand-muted text-sm leading-relaxed pb-6">Our primary service area is Winchester, VA and surrounding communities including Front Royal, Strasburg, Berryville, Stephens City, Middletown, and parts of West Virginia (Martinsburg, Charles Town, Ranson). We also serve Northern Virginia including Loudoun County. Call us to confirm service to your specific area.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+<section id="contact" class="bg-white py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+
+      <!-- Contact Info -->
+      <div class="reveal">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-brand-charcoal font-700 tracking-tight mb-6">
+          Let's Build Something <span class="text-brand-orange">Amazing</span>
+        </h2>
+        <p class="text-brand-muted text-base leading-relaxed mb-8 lg:mb-10">Ready to transform your outdoor space? Contact us today for a free in-person estimate. We'll discuss your vision, assess your property, and craft a plan that fits your lifestyle and budget.</p>
+
+        <div class="space-y-5">
+          <a href="tel:5405148725" class="flex items-center gap-4 group p-4 rounded-xl hover:bg-brand-cream transition-colors duration-200 -mx-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+            <div class="w-12 h-12 bg-brand-orange/10 rounded-xl flex items-center justify-center group-hover:bg-brand-orange/20 transition-colors flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-brand-muted font-500 uppercase tracking-wider">Call Us</div>
+              <div class="text-brand-charcoal font-700 text-base group-hover:text-brand-orange transition-colors">(540) 514-8725</div>
+            </div>
+          </a>
+
+          <div class="flex items-center gap-4 p-4 -mx-4">
+            <div class="w-12 h-12 bg-brand-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="2.2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-brand-muted font-500 uppercase tracking-wider">Address</div>
+              <div class="text-brand-charcoal font-600 text-sm">704 Baker Ln, Suite 5<br/>Winchester, VA 22603</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 p-4 -mx-4">
+            <div class="w-12 h-12 bg-brand-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8712A" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-brand-muted font-500 uppercase tracking-wider">Hours</div>
+              <div class="text-brand-charcoal font-600 text-sm">Mon–Sat: 8:00 AM – 6:00 PM<br/><span class="text-brand-muted">Sunday: Closed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="flex items-center gap-4 mt-8 pt-8 border-t border-brand-border">
+          <span class="text-xs text-brand-muted font-500 uppercase tracking-wider">Follow Us</span>
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-brand-cream border border-brand-border flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange text-brand-gray">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-brand-cream border border-brand-border flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange text-brand-gray">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" class="w-9 h-9 rounded-lg bg-brand-cream border border-brand-border flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange hover:text-white transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange text-brand-gray">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="reveal">
+        <div class="bg-brand-cream rounded-2xl p-8 lg:p-10 border border-brand-border shadow-card">
+          <h3 class="font-display text-2xl font-700 text-brand-charcoal mb-2">Request a Free Estimate</h3>
+          <p class="text-brand-muted text-sm mb-7">Fill out the form and we'll get back to you within 24 hours.</p>
+
+          <form id="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="first-name" class="block text-xs font-600 text-brand-gray mb-1.5 uppercase tracking-wider">First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="John" class="form-input" required />
+              </div>
+              <div>
+                <label for="last-name" class="block text-xs font-600 text-brand-gray mb-1.5 uppercase tracking-wider">Last Name</label>
+                <input type="text" id="last-name" name="last_name" placeholder="Smith" class="form-input" required />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-xs font-600 text-brand-gray mb-1.5 uppercase tracking-wider">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" class="form-input" required />
+            </div>
+            <div class="mb-4">
+              <label for="phone" class="block text-xs font-600 text-brand-gray mb-1.5 uppercase tracking-wider">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(540) 000-0000" class="form-input" />
+            </div>
+            <div class="mb-4">
+              <label for="service" class="block text-xs font-600 text-brand-gray mb-1.5 uppercase tracking-wider">Service Interested In</label>
+              <select id="service" name="service" class="form-input">
+                <option value="" disabled selected>Select a service...</option>
+                <option value="deck">Deck</option>
+                <option value="patio">Patio</option>
+                <option value="hardscape">Hardscapes</option>
+                <option value="fireplace">Outdoor Fireplace</option>
+                <option value="porch">Porch</option>
+                <option value="landscaping">Landscaping</option>
+                <option value="multiple">Multiple Services</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-xs font-600 text-brand-gray mb-1.5 uppercase tracking-wider">Tell Us About Your Project</label>
+              <textarea id="message" name="message" rows="4" placeholder="Describe your vision, approximate size, timeline, etc..." class="form-input resize-none"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full text-base py-4 justify-center">
+              Send Request — It's Free!
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" class="hidden text-center py-8">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4 class="font-display text-xl font-700 text-brand-charcoal mb-2">Request Sent!</h4>
+            <p class="text-brand-muted text-sm">We'll be in touch within 24 hours. For immediate help, call <a href="tel:5405148725" class="text-brand-orange font-600 hover:underline">(540) 514-8725</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CTA BANNER ═══════════════════════════════ -->
+<section class="bg-brand-dark relative overflow-hidden py-16">
+  <div class="absolute inset-0 opacity-10" style="background: radial-gradient(ellipse at 30% 50%, #E8712A 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #C85E1F 0%, transparent 60%)"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl text-white font-700 tracking-tight mb-4">Ready to Transform Your Outdoor Space?</h2>
+    <p class="text-white/65 text-base mb-8 max-w-xl mx-auto">Mon–Sat, 8AM–6PM. Call us or fill out a form — we'll come to you.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="tel:5405148725" class="btn-primary text-base px-8 py-4">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call (540) 514-8725
+      </a>
+      <a href="#contact" class="btn-outline text-base px-8 py-4">Get Free Estimate</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="bg-brand-dark border-t border-white/10 pt-12 lg:pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10 lg:mb-12">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-brand-orange flex items-center justify-center flex-shrink-0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <div class="text-white font-display font-700 text-lg leading-none">S&amp;N Construction LLC</div>
+            <div class="text-brand-orange text-xs font-500 tracking-widest uppercase leading-none mt-0.5">Winchester, VA</div>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed max-w-xs mb-5">Winchester's trusted choice for custom outdoor living spaces — built with craftsmanship and care that lasts.</p>
+        <div class="flex gap-3">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all duration-200 text-white/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all duration-200 text-white/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all duration-200 text-white/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="text-white text-sm font-700 uppercase tracking-wider mb-4">Services</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#services" class="text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">Decks</a></li>
+          <li><a href="#services" class="text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">Patios</a></li>
+          <li><a href="#services" class="text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">Hardscapes</a></li>
+          <li><a href="#services" class="text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">Fireplaces</a></li>
+          <li><a href="#services" class="text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">Porches</a></li>
+          <li><a href="#services" class="text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">Landscaping</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white text-sm font-700 uppercase tracking-wider mb-4">Contact</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href="tel:5405148725" class="flex items-start gap-2 text-white/50 text-sm hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:text-brand-orange">
+              <svg class="mt-0.5 flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (540) 514-8725
+            </a>
+          </li>
+          <li class="flex items-start gap-2 text-white/50 text-sm">
+            <svg class="mt-0.5 flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            704 Baker Ln, Suite 5<br/>Winchester, VA 22603
+          </li>
+          <li class="flex items-start gap-2 text-white/50 text-sm">
+            <svg class="mt-0.5 flex-shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Mon–Sat: 8AM–6PM
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-white/30 text-xs">© 2026 S&amp;N Construction LLC. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="text-white/30 text-xs hover:text-white/60 transition-colors focus-visible:outline-none">Privacy Policy</a>
+        <a href="#" class="text-white/30 text-xs hover:text-white/60 transition-colors focus-visible:outline-none">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  // ── Navbar scroll ──────────────────────────────────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Hamburger menu ─────────────────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const h1 = document.getElementById('h1');
+  const h2 = document.getElementById('h2');
+  const h3 = document.getElementById('h3');
+  let menuOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    hamburger.setAttribute('aria-expanded', menuOpen);
+    mobileMenu.classList.toggle('open', menuOpen);
+    if (menuOpen) {
+      h1.style.cssText = 'transform: translateY(6px) rotate(45deg)';
+      h2.style.cssText = 'opacity: 0; transform: scaleX(0)';
+      h3.style.cssText = 'transform: translateY(-6px) rotate(-45deg)';
+    } else {
+      h1.style.cssText = '';
+      h2.style.cssText = '';
+      h3.style.cssText = '';
+    }
+  });
+
+  // Close mobile menu when a link is clicked
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      hamburger.setAttribute('aria-expanded', false);
+      mobileMenu.classList.remove('open');
+      h1.style.cssText = '';
+      h2.style.cssText = '';
+      h3.style.cssText = '';
+    });
+  });
+
+  // ── FAQ accordion ──────────────────────────────────────────────────────
+  function toggleFaq(btn) {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    // Close all
+    document.querySelectorAll('.faq-btn').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    // Open clicked (if it was closed)
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.nextElementSibling.classList.add('open');
+    }
+  }
+
+  // ── Scroll reveal ──────────────────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // ── Contact form ───────────────────────────────────────────────────────
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    // Basic validation
+    const firstName = document.getElementById('first-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!firstName || !email) {
+      alert('Please fill in your first name and email address.');
+      return;
+    }
+    // Simulate submission
+    form.style.opacity = '0.5';
+    form.style.pointerEvents = 'none';
+    setTimeout(() => {
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+    }, 800);
+  }
+
+  // ── Smooth scroll for anchor links ─────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
